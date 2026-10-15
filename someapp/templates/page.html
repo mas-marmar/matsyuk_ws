@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <p>результат: <span id="message_placeholder"></span></p>
+    <script>
+        let ws = new WebSocket('ws://localhost:8000/ws/echo');
+        ws.onmessage = (message) => {
+            document.getElementById('message_placeholder').textContent = message.data;
+        }
+        ws.onopen = () => {
+            ws.send("6 * 2");
+        }
+        setTimeout(() => location.reload(), 2000);
+    </script>
+</body>
+</html>
